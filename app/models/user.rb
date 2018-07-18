@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  validates :mobile, :username, :email, presence: true, uniqueness: true
-  validates :mobile, format: {with: /1[0-9]{10}\z/}
+  validates :mobile, :username, presence: true, uniqueness: {allow_blank: true}
+  validates :mobile, format: {with: /1[0-9]{10}\z/}, :if => Proc.new {mobile.present?}
 end

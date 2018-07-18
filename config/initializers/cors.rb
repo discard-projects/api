@@ -20,7 +20,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     origins $env['cors'] && $env['cors']['hosts'] || '*'
     resource '*',
              headers: :any,
-             methods: [:get, :post, :options, :delete, :put],
+             methods: :any,
              credentials: false,
              expose: %w(access-token expiry token-type uid client)
   end
